@@ -1,20 +1,24 @@
 
 <?php 
-if (isset($_GET["submit"])){
+    $a = NULL;
+    $b = NULL;
+    $c = NULL;
+    $d = NULL;
+if (isset($_POST["submit"])){
     
-    $a =(int)($_GET["Angka1"]);
-    $b = (int)($_GET["Angka2"]);
+    $a =(int)($_POST["Angka1"]);
+    $b = (int)($_POST["Angka2"]);
 
-    if ($_GET["Operasi1"]=="Kurang"){
+    if ($_POST["Operasi1"]=="Kurang"){
         $c = $a-$b;
         $d = "Dikurang";
     }
-    elseif ($_GET["Operasi1"]=="Tambah"){
+    elseif ($_POST["Operasi1"]=="Tambah"){
 
         $c =  $a+$b;
         $d = "Ditambah";
     }
-    elseif ($_GET["Operasi1"]=="Bagi"){
+    elseif ($_POST["Operasi1"]=="Bagi"){
         if ($b==0){
             echo "<script> alert('Angka Kedua Tidak Boleh 0');</script>";
         }else{
@@ -22,7 +26,7 @@ if (isset($_GET["submit"])){
             $d = "Dibagi";
         };
     }
-    elseif ($_GET["Operasi1"]=="Kali"){
+    elseif ($_POST["Operasi1"]=="Kali"){
         $c = $a*$b;
         $d = "Dikali";
     }
@@ -53,7 +57,7 @@ if (isset($_GET["submit"])){
                 </div>
             </div>
         
-        <form action="" method ="get">
+        <form action="" method ="post">
             
             <label for="Angka1" style="font-weight: bold;">Angka Pertama</label>
             <div class="input-group mb-3">
@@ -75,7 +79,10 @@ if (isset($_GET["submit"])){
             <br>
             <button class="btn btn-success" type="text" name="submit" >Hitung</button>
             <br><br>
-            <p>Jadi Hasil dari <?= $_GET["Angka1"]; ?> <?= $d; ?> <?= $_GET["Angka2"]; ?> adalah <?= $c; ?></p>
+            <?php if ($a != NULL and $b != NULL and $c != NULL and $d != NULL): ?>
+                <p>Jadi Hasil dari <?= $a; ?> <?= $d; ?> <?= $b; ?> adalah <?= $c; ?></p>
+            <?php endif; ?>
+    
         </form>
     </div>
     
